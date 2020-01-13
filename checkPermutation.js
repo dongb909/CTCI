@@ -40,14 +40,15 @@ var CTCIsolutionPractice = (str1, str2) => {
   if (str1.length !== str2.length) {
     return false;
   } 
-  var str1sorted = str1.split('').sort().join('');
+  var str1sorted = str1.split('').sort().join();
   var str2sorted = str2.split('').sort().join('');
+
   if (str1sorted === str2sorted){
     return true
   }
   return false
 }
 
-// console.log(CTCIsolutionPractice('adce', 'dbeca'))
+console.log(CTCIsolutionPractice('adbce', 'dbeca'))
 
 //bigO(n log n)
