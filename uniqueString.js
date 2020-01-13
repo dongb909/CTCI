@@ -12,17 +12,17 @@ var isUnique1 = string => {
   for (var i = 0; i < string.length; i ++) {
     //check to see if character already in obj
     //if yes then return false
-    console.log(char)
+    console.log(char);
     if (char.hasOwnProperty(string[i]) === true) {
-      return false
+      return false;
     } else {
       //else add character to obj and set to 1
-      char[string[i]] = 1
-      console.log(char)
+      char[string[i]] = 1;
+      console.log(char);
     }
   }
   //if go through end of string then return true
-  return true
+  return true;
 }
 // console.log(isUnique1('abccdefg'))
 
@@ -39,14 +39,14 @@ var isUnique2 = string => {
     for (var j = i+1; j < string.length; j ++) {  
        //NOTE: j should be i+1 or else if just put j = 1, then after the first loop, both i and j will equal one and false is returned
        //if match then break and return false
-       console.log(string[i], '======', string[j])
+       console.log(string[i], '======', string[j]);
       if (string[i] === string[j]) {
-        return false
+        return false;
       } 
     }
   }
   //if complete then return true
-  return true
+  return true;
 }
 
 console.log(isUnique2('abccde'))
