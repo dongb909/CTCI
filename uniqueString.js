@@ -1,6 +1,7 @@
 // Question: Does string have all unique characters?
 //ex: string1 = 'jlkfsd' ==> true
 //ex: string2 = 'aabbcc' ==> false
+//assuming all are alphabetical characters 
 
 // Solution 1, using additional data structure aka object
 //Declare function
@@ -23,7 +24,7 @@ var isUnique1 = string => {
   //if go through end of string then return true
   return true
 }
-console.log(isUnique1('abccdefg'))
+// console.log(isUnique1('abccdefg'))
 
 //Big O (N)
 
@@ -34,15 +35,20 @@ console.log(isUnique1('abccdefg'))
 var isUnique2 = string => {
 //Iterate through string (i)
   for (var i = 0; i < string.length; i++) {
-    for (var j = 1; j < string.length; j ++) {
-
-    
-  
-  //iterate through remaining characters (j) to see if match
-
-  //if match then break and return false
+      //iterate through remaining characters (j) to see if match
+    for (var j = i+1; j < string.length; j ++) {  
+       //NOTE: j should be i+1 or else if just put j = 1, then after the first loop, both i and j will equal one and false is returned
+       //if match then break and return false
+       console.log(string[i], '======', string[j])
+      if (string[i] === string[j]) {
+        return false
+      } 
     }
   }
-
   //if complete then return true
+  return true
 }
+
+console.log(isUnique2('abccde'))
+
+// Big O(N^2)
