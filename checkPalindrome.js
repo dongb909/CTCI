@@ -22,7 +22,7 @@ var isPalindrome2 = (str) => {
   var reverseStr = [];
   for (var i = 0; i < str.length; i++) {
     reverseStr.unshift(str[i]);
-    // console.log(reverseStr)
+    // console.log(reverseStr);
   }
   if (str.toLowerCase() !== reverseStr.join('').toLowerCase()) {
     return false;
@@ -46,4 +46,8 @@ var isPalindromePhrase = (phrase) => {
   return true;
 }
 
-console.log(isPalindromePhrase('Was It A Rat I Saw'))
+console.log(isPalindromePhrase('Was It A Rat I Saw'));
+
+
+
+
