@@ -2,6 +2,7 @@
 //ex: 'abcdcba' odd
 //ex: 'abccba' even
 //ex: 'Was It A Rat I Saw'
+//ex: "A man, a    plan, a canal: Panama"
 
 //solution1 : using reverse()
 
@@ -12,6 +13,16 @@ var isPalindrome1 = (str) => {
   }
   return true;
 }
+
+var isPalindrome = function(s) {
+  var str = s.replace(/[^0-9a-z]/gi, '').toLowerCase();
+  console.log(str)
+  var strReversed = str.split('').reverse().join('');
+  if (str !== strReversed) {
+  return false;
+}
+return true;
+};
 
 // console.log(isPalindrome1('acba'))
 
