@@ -31,7 +31,7 @@ var delMiddle = (list, del) => {
     } else {
       tracker = tracker.next
     }
-  }
+  } 
   return list
 }
 

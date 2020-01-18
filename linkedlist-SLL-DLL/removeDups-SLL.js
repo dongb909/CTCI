@@ -42,7 +42,7 @@ var removeDups = list => {   //list holds the variable name of the linkedlist ak
 var e = new Node('e');
 var d = new Node('a');
 d.next = e;
-var a3 = new Node('a');
+var a3 = new Node('c');
 a3.next = d;
 var a2 = new Node('a');
 a2.next = a3;
@@ -59,6 +59,26 @@ var myList = a;
 // var b = new Node('b');
 // mylist.next = b
 // console.log(mylist)
-console.log('before', myList)
-removeDups(myList);
-console.log('after', myList)
+// console.log('before', myList)
+// removeDups(myList);
+// console.log('after', myList)
+
+
+//WITHOUT RECURSION
+var dedup = (ll) => {
+  var a = ll
+  while (a.next !== null) {
+    b = a     //START ALL POINTERS AT FIRST NODE!!!!
+    while (b.next !== null) {
+      if (a.data === b.next.data) { 
+        b.next = b.next.next;
+      } else {
+        b = b.next
+      }
+    }
+    a = a.next
+  }
+  return ll
+}
+
+console.log (dedup(myList))
