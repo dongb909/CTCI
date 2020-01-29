@@ -15,16 +15,16 @@ var isPalindrome1 = (str) => {
 }
 
 var isPalindrome = function(s) {
-  var str = s.replace(/[^0-9a-z]/gi, '').toLowerCase();
-  console.log(str)
-  var strReversed = str.split('').reverse().join('');
-  if (str !== strReversed) {
+  var string = s.replace(/[^0-9a-z]/gi, '').toLowerCase();
+  console.log(string)
+  var stringReversed = string.split('').reverse().join('');
+  if (string !== stringReversed) {
   return false;
 }
 return true;
 };
 
-// console.log(isPalindrome1('acba'))
+console.log(isPalindrome(' '))
 
 
 //solution2: not using reverse but by algorithm
@@ -57,7 +57,7 @@ var isPalindromePhrase = (phrase) => {
   return true;
 }
 
-console.log(isPalindromePhrase('Was It A Rat I Saw'));
+// console.log(isPalindromePhrase('Was It A Rat I Saw'));
 
 
 

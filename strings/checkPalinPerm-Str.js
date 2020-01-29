@@ -19,31 +19,40 @@ You can ignore casing and non-letter characters
 //all characters must be even except 1 which must be odd
 //if more than 1 character is odd then false
 
-var isPalinPerm = phrase => {
-  //check if the str / phrase already is a palindrome
-  //REMEMBER TO ACCOUNT FOR CASES!!!!
-  var compact = phrase.split(' ').join('').toLowerCase();
-  var reversed = compact.split('').reverse().join('');
-  if (compact === reversed) {
-    return true;
-  } else {
-    //iterate through phrase and add each character to obj while counting up
-    var charCount = {}
-    for (var i = 0; i < compact.length; i++) {
-      if (!charCount.hasOwnProperty(compact[i])) { //if false meaning not found
-        charCount[compact[i]] = 1;
-      } else {
-        charCount[compact[i]]++;
-      }
+
+let isPalindrome = function(string) {
+  let stringReversed = string.split('').reverse().join('');
+  if (string !== stringReversed) {
+  return false;
+}
+return true;
+};
+
+
+let storeCharacters = string => {
+  let charCount = {}
+  for (let i = 0; i < string.length; i++) {
+    if (!charCount.hasOwnProperty(string[i])) { //if false meaning not found
+      charCount[string[i]] = 1;
+    } else {
+      charCount[string[i]]++;
     }
-    console.log(charCount)
-    //don't have to check length, just check that all values are even or that there's no more than 1 value that's an odd value once iteration is complete
-    //check each value by iterating through obj keys
-    //assign an odd counter
-    var oddCount = 0;
-    for (var key in charCount) {
-      console.log (charCount[key]%2)
-      if (charCount[key] % 2 !== 0) { //if k's value is not even
+  }
+  return charCount
+}
+
+
+let isPalinPerm = startingString => {
+  //this part isn't necessary but only if you want it to go fast just in case.
+  let compactString = startingString.replace(/[^0-9a-z]/gi, '').toLowerCase();
+  if (isPalindrome(compactString)) {
+    return true
+  } else {
+    let characterStored = storeCharacters(compactString)
+    let oddCount = 0;
+    for (let key in characterStored) {
+      console.log (characterStored[key]%2)
+      if (characterStored[key] % 2 !== 0) { //if k's value is not even
       console.log(oddCount)
         oddCount++;
       } 
@@ -56,5 +65,5 @@ var isPalinPerm = phrase => {
 }
 
 
-console.log(isPalinPerm('Was t  A Rat  Saw'))
+console.log(isPalinPerm('Was t  A fbcat  Saw'))
 
