@@ -15,27 +15,27 @@ class Node {
   }
 }
 
-var removeDups = list => {   //list holds the variable name of the linkedlist aka the head
-  var ptA = list;
-  while (ptA.next !== null) {
-    var ptB = ptA;
-    var checkAB = (A, B) => {
-      while (B.next !== null) {
-        if (B.next.data !== A.data) {
-          B = B.next;
-          checkAB(A, B);
-        } else {
-          // B = B.next.next //NO! you're only setting the pointer to b.next.next NOT The b.next value itself
-          B.next = B.next.next 
-          checkAB(A, B)
-        }
-      }
-      return
+var checkForDuplicate = (node1, node2) => {
+  while (node2.next !== null) {
+    if (node2.next.data !== node1.data) {
+      node2 = node2.next;
+      checkForDuplicate(node1, node2);
+    } else {
+      // B = B.next.next //NO! you're only setting the pointer to b.next.next NOT The b.next value itself
+      node2.next = node2.next.next 
+      checkForDuplicate(node1, node2)
     }
-    checkAB(ptA, ptB);
-    ptA = ptA.next
   }
   return
+}
+var removeDups = list => {   //list holds the variable name of the linkedlist aka the head
+  var mainPointer = list;
+  while (mainPointer.next !== null) {
+    var iteratorPointer = mainPointer;
+    checkForDuplicate(mainPointer, iteratorPointer);
+    mainPointer = mainPointer.next
+  }
+  return list
 }
 
 //Easier to create linkedlist from tail to head
@@ -52,33 +52,68 @@ var a = new Node('a');
 a.next = b;
 var myList = a;
 
+// console.log(removeDups(myList))
 
 
-//or can do head to tail
-// var mylist = new Node ('a');
-// var b = new Node('b');
-// mylist.next = b
-// console.log(mylist)
-// console.log('before', myList)
-// removeDups(myList);
-// console.log('after', myList)
+
+
+
+
+
 
 
 //WITHOUT RECURSION
-var dedup = (ll) => {
-  var a = ll
-  while (a.next !== null) {
-    b = a     //START ALL POINTERS AT FIRST NODE!!!!
-    while (b.next !== null) {
-      if (a.data === b.next.data) { 
-        b.next = b.next.next;
+var dedup = (linkedList) => {
+  var mainPointer = linkedList
+  while (mainPointer.next !== null) {
+    subPointer = mainPointer     //START ALL POINTERS AT FIRST NODE!!!!
+    while (subPointer.next !== null) {
+      if (mainPointer.data === subPointer.next.data) { 
+        subPointer.next = subPointer.next.next;
       } else {
-        b = b.next
+        subPointer = subPointer.next
       }
     }
-    a = a.next
+    mainPointer = mainPointer.next
   }
-  return ll
+  return linkedList
 }
 
-console.log (dedup(myList))
+// console.log (dedup(myList))
+
+
+
+//SOLUTION WITH HASHTABLE
+var hashtable = {}
+
+var storeToHashtable = value => {
+  if (value in hashtable) {
+    return
+  } else {
+    hashtable[value] = 1;
+    return 1
+  }
+}
+
+var deleteDuplicate = linkedList => {
+  if (linkedList === null) {
+    return null
+  }
+  var pointer = linkedList;
+  storeToHashtable(pointer.data);
+  console.log('hasshhhh', hashtable)
+  while (pointer.next !== null) {
+    if (hashtable[pointer.next.data] === 1) {
+      pointer.next = pointer.next.next
+      //aka delete next node duplicate
+    } else {
+      storeToHashtable(pointer.next.data)
+      pointer = pointer.next;
+    }
+  }
+  return linkedList
+}
+
+console.log('original list', myList)
+console.log(deleteDuplicate(myList))
+console.log(hashtable)
