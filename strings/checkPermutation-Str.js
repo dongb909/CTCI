@@ -27,7 +27,7 @@ var isPermutation = (string1, string2) => {
   return true;
 }
 
-// console.log(isPermutation('abccef', 'dcefab'))
+console.log(isPermutation('abccef', 'dcefab'))
 
 
 // Big O(N)
